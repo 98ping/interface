@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+    id "com.github.johnrengelman.shadow" version "7.1.2"
+    id "org.jetbrains.kotlin.jvm" version "1.6.21"
+    id "org.jetbrains.kotlin.kapt" version "1.6.21"
+}
+
+group 'ltd.matrixstudios'
+version '1.0'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+
+    maven { url 'https://papermc.io/repo/repository/maven-public/' }
+    maven { url 'https://jitpack.io/' }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+
+    //spigot
+    compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT' //compatable with the actual spigot because its just the API. I also dont have spigot on PC
+
+    //development libraries
+    compileOnly 'com.github.98ping:Alchemist:886ee22812'
+    implementation 'com.github.thatkawaiisam:assemble:0873308ada'
+
+    //lucko
+    implementation "me.lucko:helper:5.6.10"
+    kapt "me.lucko:helper:5.6.10"
+
+}
+
+shadowJar {
+    archiveClassifier.set("")
+
+    exclude "**/*.kotlin_metadata"
+    exclude "**/*.kotlin_module"
+    exclude "**/*.kotlin_builtins"
+
+    exclude "META-INF/"
+
+    archiveFileName = "interface-1.0.jar"
+}

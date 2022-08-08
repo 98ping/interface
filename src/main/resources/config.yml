@@ -1,0 +1,44 @@
+joinMessages:
+  - "&7&m----------------------------"
+  - "&aTest Server &7(Hub-01)"
+  - ""
+  - "&eDiscord: discord.gg/test"
+  - "&7&m----------------------------"
+
+scoreboard:
+  title: "&9Test &7[Hub-01]"
+  lines:
+    - "&7&m----------------------------"
+    - "&bOnline: &f{online}"
+    - " "
+    - "&bRank: &f{rank}"
+    - " "
+    - "&7&m----------------------------"
+  linesQueued:
+    - "&7&m----------------------------"
+    - "&bOnline: &f{online}"
+    - " "
+    - "&bRank: &f{rank}"
+    - " "
+    - "&bQueue: &f{queueName}"
+    - "&bPosition: &f{position}/{total}"
+    - "&7&m----------------------------"
+
+selector:
+  title: "Choose a Server"
+  size: 27
+  clickable:
+    name: "&9Select a Server"
+    lore:
+      - "&7Click to select a server!"
+    material: BOOK
+    data: 0
+  items:
+    test:
+      slot: 0
+      displayName: "&9Test"
+      lore:
+        - "&7Test"
+      data: 0
+      material: REDSTONE
+      command: "joinqueue Test"
