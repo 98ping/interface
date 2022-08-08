@@ -3,10 +3,11 @@ package ltd.matrixstudios.hubcore.ranks
 import ltd.matrixstudios.alchemist.api.AlchemistAPI
 import ltd.matrixstudios.hubcore.InterfacePlugin
 import ltd.matrixstudios.hubcore.ranks.impl.AlchemistAdapter
+import ltd.matrixstudios.hubcore.services.Service
 import org.bukkit.entity.Player
 import java.util.logging.Level
 
-object RankAdapterService
+object RankAdapterService : Service
 {
     val PLUGIN_NAMES = listOf<Pair<String, RankAdapter>>(Pair("Alchemist", AlchemistAdapter()))
 
@@ -34,5 +35,9 @@ object RankAdapterService
         }
 
         return "&fUnknown"
+    }
+
+    override fun initiate() {
+        setupRankAdapter()
     }
 }

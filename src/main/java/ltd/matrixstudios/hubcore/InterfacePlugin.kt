@@ -47,7 +47,7 @@ class InterfacePlugin : ExtendedJavaPlugin()
     fun registerAllSerivces()
     {
         SelectorItemService.initiate()
-        RankAdapterService.setupRankAdapter()
+        RankAdapterService.initiate()
     }
 
     fun registerEvents()
