@@ -20,6 +20,8 @@ object SelectorItemService : Service
     var selectorTitle: String = "Server Selector"
     var selectorSize: Int = 18
     lateinit var selectorItem: ItemStack
+    //in the inventory
+    var selectorItemLocation: Int = 0
 
     fun loadMenuValues()
     {
@@ -32,6 +34,8 @@ object SelectorItemService : Service
         val selectorItemLore = config.getStringList("selector.clickable.lore")
         val selectorItemMaterial = config.getString("selector.clickable.material")
         val selectorItemData = config.getInt("selector.clickable.data")
+
+        selectorItemLocation = config.getInt("selector.clickable.invSlot")
 
         selectorItem = ItemBuilder.of(
             Material.getMaterial(selectorItemMaterial.uppercase())

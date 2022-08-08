@@ -27,6 +27,7 @@ scoreboard:
 selector:
   title: "Choose a Server"
   size: 27
+  invSlot: 0
   clickable:
     name: "&9Select a Server"
     lore:
@@ -42,3 +43,15 @@ selector:
       data: 0
       material: REDSTONE
       command: "joinqueue Test"
+
+items:
+  lobbySelector:
+    name: "&bLobby Selector"
+    lore:
+      - "&7Select a Lobby"
+    item: NETHER_STAR
+    data: 0
+    useAction: true
+    slot: 8
+    command:
+      - "openmenu LobbySelector"

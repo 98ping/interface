@@ -1,5 +1,8 @@
 package ltd.matrixstudios.hubcore
 
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.google.gson.LongSerializationPolicy
 import io.github.thatkawaiisam.assemble.Assemble
 import io.github.thatkawaiisam.assemble.AssembleStyle
 import ltd.matrixstudios.hubcore.displays.HubcoreScoreboard
@@ -25,6 +28,14 @@ class InterfacePlugin : ExtendedJavaPlugin()
     {
         lateinit var instance: InterfacePlugin
     }
+
+    val GSON: Gson = GsonBuilder()
+        .serializeNulls()
+        .setLongSerializationPolicy(
+            LongSerializationPolicy.STRING
+        )
+        .setPrettyPrinting()
+        .create()
 
     override fun enable() {
         instance = this
