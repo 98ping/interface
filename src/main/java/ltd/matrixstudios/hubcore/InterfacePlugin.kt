@@ -3,6 +3,7 @@ package ltd.matrixstudios.hubcore
 import io.github.thatkawaiisam.assemble.Assemble
 import io.github.thatkawaiisam.assemble.AssembleStyle
 import ltd.matrixstudios.hubcore.displays.HubcoreScoreboard
+import ltd.matrixstudios.hubcore.inventory.InventoryLoadoutService
 import ltd.matrixstudios.hubcore.ranks.RankAdapterService
 import ltd.matrixstudios.hubcore.selector.SelectorItemService
 import ltd.matrixstudios.hubcore.utils.menu.listener.MenuListener
@@ -48,6 +49,7 @@ class InterfacePlugin : ExtendedJavaPlugin()
     {
         SelectorItemService.initiate()
         RankAdapterService.initiate()
+        InventoryLoadoutService.initiate()
     }
 
     fun registerEvents()

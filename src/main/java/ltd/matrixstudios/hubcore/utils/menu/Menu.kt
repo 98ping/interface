@@ -1,6 +1,6 @@
 package ltd.matrixstudios.hubcore.utils.menu
 
-import ltd.matrixstudios.hubcore.CompoundPlugin
+import ltd.matrixstudios.hubcore.InterfacePlugin
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.bukkit.scheduler.BukkitRunnable
@@ -59,7 +59,7 @@ abstract class Menu(
 
             }
 
-        }.runTaskTimer(CompoundPlugin.instance, 20L, 10L)
+        }.runTaskTimer(InterfacePlugin.instance, 20L, 10L)
 
     }
 

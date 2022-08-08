@@ -83,7 +83,7 @@ object SelectorItemService : Service
                 it.action == Action.RIGHT_CLICK_AIR || it.action == Action.RIGHT_CLICK_BLOCK
             }
             .filter {
-                it.item.isSimilar(selectorItem)
+                it.item != null && it.item.type != Material.AIR && it.item.isSimilar(selectorItem)
             }
             .handler {
                 SelectorMenu(it.player).openMenu()

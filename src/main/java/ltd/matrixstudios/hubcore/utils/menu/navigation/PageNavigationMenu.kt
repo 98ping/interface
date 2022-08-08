@@ -1,6 +1,6 @@
 package ltd.matrixstudios.hubcore.utils.menu.navigation
 
-import ltd.matrixstudios.hubcore.chat.Chat
+import ltd.matrixstudios.hubcore.utils.Chat
 import ltd.matrixstudios.hubcore.utils.menu.Button
 import ltd.matrixstudios.hubcore.utils.menu.pagination.PaginatedMenu
 import org.bukkit.Material
