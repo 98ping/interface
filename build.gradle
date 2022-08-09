@@ -33,6 +33,7 @@ dependencies {
     //databases
     implementation "org.mongodb:mongo-java-driver:3.12.11"
     implementation 'io.lettuce:lettuce-core:6.2.0.RELEASE'
+    implementation 'redis.clients:jedis:4.2.3'
 
     //lucko
     implementation "me.lucko:helper:5.6.10"
