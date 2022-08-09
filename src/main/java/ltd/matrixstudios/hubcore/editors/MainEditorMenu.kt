@@ -1,5 +1,6 @@
 package ltd.matrixstudios.hubcore.editors
 
+import ltd.matrixstudios.hubcore.editors.menu.MenuEditorMenu
 import ltd.matrixstudios.hubcore.utils.Chat
 import ltd.matrixstudios.hubcore.utils.menu.Button
 import ltd.matrixstudios.hubcore.utils.menu.Menu
@@ -25,7 +26,14 @@ class MainEditorMenu(val player: Player) : Menu(27, player)
             buttons[int] = PlaceholderButton(Material.STAINED_GLASS_PANE, mutableListOf(), "", 7)
         }
 
-        buttons[10] = SimpleActionButton(Material.POWERED_RAIL, mutableListOf(), "&bMenu Editor", 0).setClickAction { player, i, clickType ->  }
+        buttons[10] = SimpleActionButton(
+            Material.POWERED_RAIL,
+            mutableListOf(),
+            Chat.format("&bMenu Editor"),
+            0
+        ).setClickAction { player, i, clickType ->
+            MenuEditorMenu(player).updateMenu()
+        }
 
 
         return buttons

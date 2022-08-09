@@ -1,10 +1,12 @@
 package ltd.matrixstudios.hubcore
 
+import co.aikar.commands.PaperCommandManager
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.LongSerializationPolicy
 import io.github.thatkawaiisam.assemble.Assemble
 import io.github.thatkawaiisam.assemble.AssembleStyle
+import ltd.matrixstudios.hubcore.commands.InterfaceCommands
 import ltd.matrixstudios.hubcore.displays.HubcoreScoreboard
 import ltd.matrixstudios.hubcore.inventory.InventoryLoadoutService
 import ltd.matrixstudios.hubcore.menus.CustomMenuService
@@ -47,6 +49,15 @@ class InterfacePlugin : ExtendedJavaPlugin()
 
         registerEvents()
         initDisplays()
+
+        registerCommands()
+    }
+
+    fun registerCommands()
+    {
+        val commandManager = PaperCommandManager(this).apply {
+            this.registerCommand(InterfaceCommands())
+        }
     }
 
     fun initDisplays()

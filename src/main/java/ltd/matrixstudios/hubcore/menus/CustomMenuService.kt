@@ -32,7 +32,7 @@ object CustomMenuService : Service
             }
         } else
         {
-            file.mkdir()
+            file.createNewFile()
         }
     }
 
@@ -49,6 +49,8 @@ object CustomMenuService : Service
                 ), file,
                 Charsets.UTF_8
             )
+
+            menus[menu.id] = menu
         }
     }
 
