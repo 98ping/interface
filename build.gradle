@@ -15,6 +15,7 @@ repositories {
     maven { url 'https://papermc.io/repo/repository/maven-public/' }
     maven { url 'https://jitpack.io/' }
     maven { url = "https://repo.aikar.co/content/groups/aikar/" }
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
 }
 
 dependencies {
@@ -27,6 +28,11 @@ dependencies {
     compileOnly 'com.github.98ping:Alchemist:886ee22812'
     implementation 'com.github.thatkawaiisam:assemble:0873308ada'
     implementation "co.aikar:acf-paper:0.5.1-SNAPSHOT"
+    implementation 'com.github.scalagg.scala-store:shared:3af8d2d9fe'
+
+    //databases
+    implementation "org.mongodb:mongo-java-driver:3.12.11"
+    implementation 'io.lettuce:lettuce-core:6.2.0.RELEASE'
 
     //lucko
     implementation "me.lucko:helper:5.6.10"

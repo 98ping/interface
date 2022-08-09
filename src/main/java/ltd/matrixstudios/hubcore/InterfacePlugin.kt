@@ -4,6 +4,7 @@ import co.aikar.commands.PaperCommandManager
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.LongSerializationPolicy
+import gg.scala.store.ScalaDataStoreShared
 import io.github.thatkawaiisam.assemble.Assemble
 import io.github.thatkawaiisam.assemble.AssembleStyle
 import ltd.matrixstudios.hubcore.commands.InterfaceCommands
@@ -12,6 +13,9 @@ import ltd.matrixstudios.hubcore.inventory.InventoryLoadoutService
 import ltd.matrixstudios.hubcore.menus.CustomMenuService
 import ltd.matrixstudios.hubcore.ranks.RankAdapterService
 import ltd.matrixstudios.hubcore.selector.SelectorItemService
+import ltd.matrixstudios.hubcore.store.DataStoreManager
+import ltd.matrixstudios.hubcore.users.UserService
+import ltd.matrixstudios.hubcore.utils.Chat
 import ltd.matrixstudios.hubcore.utils.menu.listener.MenuListener
 import me.lucko.helper.Events
 import me.lucko.helper.plugin.ExtendedJavaPlugin
@@ -42,6 +46,8 @@ class InterfacePlugin : ExtendedJavaPlugin()
 
     override fun enable() {
         instance = this
+
+        ScalaDataStoreShared.INSTANCE = DataStoreManager
 
         saveDefaultConfig()
         registerMenuAPI()
@@ -74,14 +80,21 @@ class InterfacePlugin : ExtendedJavaPlugin()
         RankAdapterService.initiate()
         InventoryLoadoutService.initiate()
         CustomMenuService.initiate()
+        UserService.initiate()
     }
 
     fun registerEvents()
     {
         Events.subscribe(
             PlayerJoinEvent::class.java
-        ).handler {
+        ).handler { playerJoinEvent ->
+            val player = playerJoinEvent.player
 
+            val joinMessages = config.getStringList("joinMessages")
+
+            joinMessages.forEach {
+                player.sendMessage(Chat.format(it))
+            }
         }
     }
 

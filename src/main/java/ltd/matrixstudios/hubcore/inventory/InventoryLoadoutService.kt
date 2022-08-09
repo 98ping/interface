@@ -47,18 +47,20 @@ object InventoryLoadoutService : Service
                 useAction,
                 commands
             )
-
-
         }
     }
 
     fun registerListeners()
     {
         Events.subscribe(PlayerJoinEvent::class.java)
-            .handler {
-                val player = it.player
+            .handler { playerJoinEvent ->
+                val player = playerJoinEvent.player
 
-                player.inventory.setItem(0, SelectorItemService.selectorItem)
+                player.inventory.clear()
+
+                items.forEach {
+                    player.inventory.setItem(it.key, it.value.itemStack)
+                }
 
                 player.updateInventory()
         }

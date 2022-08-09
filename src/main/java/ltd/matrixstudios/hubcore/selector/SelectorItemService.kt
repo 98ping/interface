@@ -76,7 +76,7 @@ object SelectorItemService : Service
                 command
             )
 
-            InterfacePlugin.instance.logger.log(Level.FINE, "[items] Selector loaded in ${System.currentTimeMillis().minus(startingMs)} milliseconds")
+            InterfacePlugin.instance.logger.log(Level.INFO, "[items] Selector loaded in ${System.currentTimeMillis().minus(startingMs)} milliseconds")
         }
     }
 

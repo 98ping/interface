@@ -25,7 +25,7 @@ object RankAdapterService : Service
             rankAdapter = firstAdapter.second
         }
 
-        InterfacePlugin.instance.logger.log(Level.FINE, "[ranks] Rank adapter lookup took ${System.currentTimeMillis().minus(startingTime)} milliseconds")
+        InterfacePlugin.instance.logger.log(Level.INFO, "[ranks] Rank adapter lookup took ${System.currentTimeMillis().minus(startingTime)} milliseconds")
     }
 
     fun getRankDisplay(player: Player) : String {
