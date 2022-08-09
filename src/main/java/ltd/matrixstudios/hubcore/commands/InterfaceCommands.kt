@@ -8,8 +8,11 @@ import co.aikar.commands.annotation.Name
 import co.aikar.commands.annotation.Subcommand
 import ltd.matrixstudios.hubcore.editors.MainEditorMenu
 import ltd.matrixstudios.hubcore.menus.CustomMenu
+import ltd.matrixstudios.hubcore.menus.CustomMenuButton
 import ltd.matrixstudios.hubcore.menus.CustomMenuService
+import ltd.matrixstudios.hubcore.menus.action.CustomMenuAction
 import ltd.matrixstudios.hubcore.utils.Chat
+import org.bukkit.Material
 import org.bukkit.entity.Player
 
 @CommandAlias("interface")
@@ -43,6 +46,16 @@ class InterfaceCommands : BaseCommand() {
     fun createMenu(player: Player, @Name("name")name: String)
     {
         val menu = CustomMenu(name.lowercase())
+
+        val button = CustomMenuButton("Test Button",
+            mutableListOf("test"),
+            Material.DIRT,
+            0,
+            CustomMenuAction(
+            mutableListOf("joinqueue test"), false, "")
+        )
+
+        menu.buttons[12] = button
 
         CustomMenuService.saveMenu(menu)
         player.sendMessage(Chat.format("&aCreated a new menu with the id &f${name.lowercase()}"))

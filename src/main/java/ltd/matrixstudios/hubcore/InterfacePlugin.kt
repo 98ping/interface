@@ -11,6 +11,7 @@ import ltd.matrixstudios.hubcore.commands.InterfaceCommands
 import ltd.matrixstudios.hubcore.displays.HubcoreScoreboard
 import ltd.matrixstudios.hubcore.inventory.InventoryLoadoutService
 import ltd.matrixstudios.hubcore.menus.CustomMenuService
+import ltd.matrixstudios.hubcore.menus.commands.OpenMenuCommand
 import ltd.matrixstudios.hubcore.ranks.RankAdapterService
 import ltd.matrixstudios.hubcore.selector.SelectorItemService
 import ltd.matrixstudios.hubcore.store.DataStoreManager
@@ -63,6 +64,7 @@ class InterfacePlugin : ExtendedJavaPlugin()
     {
         val commandManager = PaperCommandManager(this).apply {
             this.registerCommand(InterfaceCommands())
+            this.registerCommand(OpenMenuCommand())
         }
     }
 

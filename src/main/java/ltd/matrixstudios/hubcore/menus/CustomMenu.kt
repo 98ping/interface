@@ -6,6 +6,5 @@ class CustomMenu(var id: String)
 {
     var title = "Menu"
     var size = 27
-    var placeholder = true
     var buttons = mutableMapOf<Int, CustomMenuButton>()
 }

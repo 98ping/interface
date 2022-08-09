@@ -6,6 +6,9 @@ import ltd.matrixstudios.hubcore.InterfacePlugin
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.bukkit.plugin.messaging.PluginMessageListener
+import java.io.ByteArrayOutputStream
+import java.io.DataOutputStream
+import java.io.IOException
 import java.util.concurrent.ConcurrentHashMap
 import java.util.function.Consumer
 
@@ -52,6 +55,30 @@ object ProxyUtils : PluginMessageListener {
         } catch (exception: Exception)
         {
             return
+        }
+    }
+
+    fun send(player: Player, server: String?) {
+        val b = ByteArrayOutputStream()
+        val out = DataOutputStream(b)
+        try {
+            out.writeUTF("Connect")
+            out.writeUTF(server)
+        } catch (ignored: IOException) {
+        }
+        player.sendPluginMessage(InterfacePlugin.instance, "BungeeCord", b.toByteArray())
+    }
+
+    fun sendAll(server: String?) {
+        val b = ByteArrayOutputStream()
+        val out = DataOutputStream(b)
+        try {
+            out.writeUTF("Connect")
+            out.writeUTF(server)
+        } catch (ignored: IOException) {
+        }
+        for (player in Bukkit.getOnlinePlayers()) {
+            player.sendPluginMessage(InterfacePlugin.instance, "BungeeCord", b.toByteArray())
         }
     }
 

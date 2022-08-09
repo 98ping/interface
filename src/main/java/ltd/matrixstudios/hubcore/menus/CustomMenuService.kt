@@ -40,6 +40,10 @@ object CustomMenuService : Service
     {
         val file = File(InterfacePlugin.instance.dataFolder, "customMenus.json")
 
+
+        menus[menu.id] = menu
+
+
         if (file.exists())
         {
             Files.write(
@@ -50,7 +54,6 @@ object CustomMenuService : Service
                 Charsets.UTF_8
             )
 
-            menus[menu.id] = menu
         }
     }
 
