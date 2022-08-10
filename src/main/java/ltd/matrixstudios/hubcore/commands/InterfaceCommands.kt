@@ -64,6 +64,8 @@ class InterfaceCommands : BaseCommand() {
             mutableListOf("joinqueue test"), false, "")
         )
 
+        menu.buttons[10] = button
+        menu.buttons[11] = button
         menu.buttons[12] = button
 
         CustomMenuService.saveMenu(menu)
