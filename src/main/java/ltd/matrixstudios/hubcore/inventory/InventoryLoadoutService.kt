@@ -21,10 +21,8 @@ object InventoryLoadoutService : Service
 
     fun loadItems()
     {
-        items[SelectorItemService.selectorItemLocation] = InventoryItem(
-            SelectorItemService.selectorItem,
-            false, mutableListOf()
-        )
+
+        items[SelectorItemService.selectorItemLocation] = InventoryItem(SelectorItemService.selectorItem, false, mutableListOf())
 
         val config = InterfacePlugin.instance.config
 

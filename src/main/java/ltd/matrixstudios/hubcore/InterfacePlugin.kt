@@ -12,6 +12,7 @@ import ltd.matrixstudios.hubcore.displays.HubcoreScoreboard
 import ltd.matrixstudios.hubcore.inventory.InventoryLoadoutService
 import ltd.matrixstudios.hubcore.menus.CustomMenuService
 import ltd.matrixstudios.hubcore.menus.commands.OpenMenuCommand
+import ltd.matrixstudios.hubcore.proxy.ProxyUtils
 import ltd.matrixstudios.hubcore.ranks.RankAdapterService
 import ltd.matrixstudios.hubcore.selector.SelectorItemService
 import ltd.matrixstudios.hubcore.store.DataStoreManager
@@ -51,6 +52,8 @@ class InterfacePlugin : ExtendedJavaPlugin()
         ScalaDataStoreShared.INSTANCE = DataStoreManager
 
         saveDefaultConfig()
+
+        ProxyUtils.load()
         registerMenuAPI()
         registerAllSerivces()
 
@@ -58,6 +61,7 @@ class InterfacePlugin : ExtendedJavaPlugin()
         initDisplays()
 
         registerCommands()
+
     }
 
     fun registerCommands()

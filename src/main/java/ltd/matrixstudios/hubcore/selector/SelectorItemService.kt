@@ -11,6 +11,7 @@ import org.bukkit.event.block.Action
 import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.inventory.ItemStack
 import java.util.logging.Level
+import kotlin.properties.Delegates
 
 object SelectorItemService : Service
 {
@@ -21,7 +22,7 @@ object SelectorItemService : Service
     var selectorSize: Int = 18
     lateinit var selectorItem: ItemStack
     //in the inventory
-    var selectorItemLocation: Int = 0
+    var selectorItemLocation by Delegates.notNull<Int>()
 
     fun loadMenuValues()
     {
@@ -35,7 +36,7 @@ object SelectorItemService : Service
         val selectorItemMaterial = config.getString("selector.clickable.material")
         val selectorItemData = config.getInt("selector.clickable.data")
 
-        selectorItemLocation = config.getInt("selector.clickable.invSlot")
+        selectorItemLocation = config.getInt("selector.invSlot")
 
         selectorItem = ItemBuilder.of(
             Material.getMaterial(selectorItemMaterial.uppercase())
@@ -43,6 +44,7 @@ object SelectorItemService : Service
             .name(Chat.format(selectorItemName))
             .setLore(selectorItemLore)
             .build()
+
     }
 
     fun loadItems()
@@ -76,8 +78,8 @@ object SelectorItemService : Service
                 command
             )
 
-            InterfacePlugin.instance.logger.log(Level.INFO, "[items] Selector loaded in ${System.currentTimeMillis().minus(startingMs)} milliseconds")
         }
+        InterfacePlugin.instance.logger.log(Level.INFO, "[items] Selector loaded in ${System.currentTimeMillis().minus(startingMs)} milliseconds")
     }
 
     fun setupListeners()

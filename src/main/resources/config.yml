@@ -24,6 +24,7 @@ scoreboard:
     - "&bPosition: &f{position}/{total}"
     - "&7&m----------------------------"
 
+#for the selector menu
 selector:
   title: "Choose a Server"
   size: 27
@@ -44,6 +45,7 @@ selector:
       material: REDSTONE
       command: "joinqueue Test"
 
+#other items that you may want to add
 items:
   lobbySelector:
     name: "&bLobby Selector"
