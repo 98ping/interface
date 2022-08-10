@@ -57,3 +57,4 @@ items:
     slot: 8
     command:
       - "openmenu LobbySelector"
+

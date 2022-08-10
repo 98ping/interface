@@ -7,6 +7,7 @@ import co.aikar.commands.annotation.HelpCommand
 import co.aikar.commands.annotation.Name
 import co.aikar.commands.annotation.Subcommand
 import ltd.matrixstudios.hubcore.editors.MainEditorMenu
+import ltd.matrixstudios.hubcore.location.SpawnLocationManager
 import ltd.matrixstudios.hubcore.menus.CustomMenu
 import ltd.matrixstudios.hubcore.menus.CustomMenuButton
 import ltd.matrixstudios.hubcore.menus.CustomMenuService
@@ -39,6 +40,14 @@ class InterfaceCommands : BaseCommand() {
     fun editor(player: Player)
     {
         MainEditorMenu(player).openMenu()
+    }
+
+    @Subcommand("set-spawn")
+    @CommandPermission("interface.admin")
+    fun setspawn(player: Player)
+    {
+        SpawnLocationManager.saveSpawnLocation(player.location)
+        player.sendMessage(Chat.format("&aUpdated spawn location"))
     }
 
     @Subcommand("createmenu")

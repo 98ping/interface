@@ -10,8 +10,10 @@ import io.github.thatkawaiisam.assemble.AssembleStyle
 import ltd.matrixstudios.hubcore.commands.InterfaceCommands
 import ltd.matrixstudios.hubcore.displays.HubcoreScoreboard
 import ltd.matrixstudios.hubcore.inventory.InventoryLoadoutService
+import ltd.matrixstudios.hubcore.location.SpawnLocationManager
 import ltd.matrixstudios.hubcore.menus.CustomMenuService
 import ltd.matrixstudios.hubcore.menus.commands.OpenMenuCommand
+import ltd.matrixstudios.hubcore.prevention.PreventionListeners
 import ltd.matrixstudios.hubcore.proxy.ProxyUtils
 import ltd.matrixstudios.hubcore.ranks.RankAdapterService
 import ltd.matrixstudios.hubcore.selector.SelectorItemService
@@ -87,10 +89,13 @@ class InterfacePlugin : ExtendedJavaPlugin()
         InventoryLoadoutService.initiate()
         CustomMenuService.initiate()
         UserService.initiate()
+        SpawnLocationManager.loadSpawnLocation()
     }
 
     fun registerEvents()
     {
+        PreventionListeners.load()
+
         Events.subscribe(
             PlayerJoinEvent::class.java
         ).handler { playerJoinEvent ->

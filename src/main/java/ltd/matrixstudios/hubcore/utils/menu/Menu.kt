@@ -23,6 +23,12 @@ abstract class Menu(
     fun openMenu() {
         val inventory = Bukkit.createInventory(null, size, getTitle(player))
 
+        if (player.openInventory != null)
+        {
+            MenuController.menuMap.remove(player.uniqueId)
+            player.closeInventory()
+        }
+
         MenuController.addToMenuMap(player, this)
 
         CompletableFuture.runAsync {
@@ -33,33 +39,6 @@ abstract class Menu(
         }
 
         player.openInventory(inventory)
-
-
-        object : BukkitRunnable() {
-
-            override fun run() {
-                if (!player.isOnline)
-                {
-                    cancel()
-                }
-
-                if (MenuController.menuMap.containsKey(player.uniqueId))
-                {
-                    val inventory = player.openInventory.topInventory
-
-                    inventory.clear()
-
-                    for (item in getAllButtons())
-                    {
-                        inventory.setItem(item.key, item.value.constructItemStack(player))
-                    }
-                } else {
-                    cancel()
-                }
-
-            }
-
-        }.runTaskTimer(InterfacePlugin.instance, 20L, 10L)
 
     }
 
