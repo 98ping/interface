@@ -6,6 +6,7 @@ import org.bukkit.event.block.BlockBreakEvent
 import org.bukkit.event.block.BlockPlaceEvent
 import org.bukkit.event.entity.EntityDamageByEntityEvent
 import org.bukkit.event.entity.EntityDamageEvent
+import org.bukkit.event.entity.FoodLevelChangeEvent
 import org.bukkit.event.player.PlayerDropItemEvent
 import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.event.player.PlayerItemBreakEvent
@@ -41,6 +42,10 @@ object PreventionListeners
         }
 
         Events.subscribe(EntityDamageEvent::class.java).handler {
+            it.isCancelled = true
+        }
+
+        Events.subscribe(FoodLevelChangeEvent::class.java).handler {
             it.isCancelled = true
         }
     }

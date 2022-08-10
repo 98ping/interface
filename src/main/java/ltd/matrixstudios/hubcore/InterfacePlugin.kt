@@ -11,6 +11,7 @@ import ltd.matrixstudios.hubcore.commands.InterfaceCommands
 import ltd.matrixstudios.hubcore.displays.HubcoreScoreboard
 import ltd.matrixstudios.hubcore.inventory.InventoryLoadoutService
 import ltd.matrixstudios.hubcore.location.SpawnLocationManager
+import ltd.matrixstudios.hubcore.location.serialize.LocationSerializer
 import ltd.matrixstudios.hubcore.menus.CustomMenuService
 import ltd.matrixstudios.hubcore.menus.commands.OpenMenuCommand
 import ltd.matrixstudios.hubcore.prevention.PreventionListeners
@@ -24,6 +25,7 @@ import ltd.matrixstudios.hubcore.utils.menu.listener.MenuListener
 import me.lucko.helper.Events
 import me.lucko.helper.plugin.ExtendedJavaPlugin
 import me.lucko.helper.plugin.ap.Plugin
+import org.bukkit.Location
 import org.bukkit.event.player.PlayerJoinEvent
 
 
@@ -45,6 +47,7 @@ class InterfacePlugin : ExtendedJavaPlugin()
         .setLongSerializationPolicy(
             LongSerializationPolicy.STRING
         )
+        .registerTypeAdapter(Location::class.java, LocationSerializer())
         .setPrettyPrinting()
         .create()
 
@@ -103,8 +106,16 @@ class InterfacePlugin : ExtendedJavaPlugin()
 
             val joinMessages = config.getStringList("joinMessages")
 
+            player.health = 20.0
+            player.foodLevel = 10
+
             joinMessages.forEach {
                 player.sendMessage(Chat.format(it))
+            }
+
+            if (SpawnLocationManager.spawnLocation != null)
+            {
+                player.teleport(SpawnLocationManager.spawnLocation)
             }
         }
     }
