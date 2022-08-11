@@ -5,6 +5,8 @@ joinMessages:
   - "&eDiscord: discord.gg/test"
   - "&7&m----------------------------"
 
+mongo: "mongodb://localhost:27017"
+
 scoreboard:
   title: "&9Test &7[Hub-01]"
   lines:
