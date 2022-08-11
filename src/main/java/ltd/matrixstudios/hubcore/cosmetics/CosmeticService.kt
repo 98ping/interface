@@ -61,7 +61,7 @@ object CosmeticService : Service
             ItemBuilder.of(Material.LEATHER_BOOTS).color(bukkitColor).build()
         )
 
-        player.inventory.armorContents = armor
+        player.inventory.armorContents = armor.reversedArray()
 
         player.updateInventory()
 
