@@ -6,8 +6,8 @@ import java.util.*
 data class User(
     override val identifier: UUID,
     val username: String,
-    val activeArmor: String?,
-    val activeParticle: String?,
+    var activeArmor: String?,
+    var activeParticle: String?,
     val joinedAt: Long,
     ) : IDataStoreObject {
 }

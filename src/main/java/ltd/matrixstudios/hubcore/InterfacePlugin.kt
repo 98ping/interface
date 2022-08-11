@@ -8,6 +8,7 @@ import gg.scala.store.ScalaDataStoreShared
 import io.github.thatkawaiisam.assemble.Assemble
 import io.github.thatkawaiisam.assemble.AssembleStyle
 import ltd.matrixstudios.hubcore.commands.InterfaceCommands
+import ltd.matrixstudios.hubcore.cosmetics.commands.CosmeticsCommand
 import ltd.matrixstudios.hubcore.displays.HubcoreScoreboard
 import ltd.matrixstudios.hubcore.inventory.InventoryLoadoutService
 import ltd.matrixstudios.hubcore.location.SpawnLocationManager
@@ -74,6 +75,7 @@ class InterfacePlugin : ExtendedJavaPlugin()
         val commandManager = PaperCommandManager(this).apply {
             this.registerCommand(InterfaceCommands())
             this.registerCommand(OpenMenuCommand())
+            this.registerCommand(CosmeticsCommand())
         }
     }
 

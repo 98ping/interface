@@ -58,3 +58,25 @@ items:
     command:
       - "openmenu LobbySelector"
 
+cosmeticButtons:
+  particles:
+    item: REDSTONE
+    name: "&bParticles"
+    data: 0
+    lore:
+      - "&7Click to view particles!"
+  armor:
+    item: LEATHER_CHESTPLATE
+    name: "&bArmor"
+    data: 0
+    lore:
+      - "&7Click to view all armors!"
+
+cosmetics:
+  owner:
+    displayName: "&4Owner &7Armor"
+    color: RED
+    item: LEATHER_CHESTPLATE
+    data: 0
+    type: "ARMOR"
+    permission: "cosmetics.owner"
