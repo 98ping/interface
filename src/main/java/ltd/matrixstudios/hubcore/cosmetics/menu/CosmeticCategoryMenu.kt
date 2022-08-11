@@ -4,6 +4,7 @@ import ltd.matrixstudios.hubcore.cosmetics.Cosmetic
 import ltd.matrixstudios.hubcore.cosmetics.CosmeticService
 import ltd.matrixstudios.hubcore.cosmetics.CosmeticType
 import ltd.matrixstudios.hubcore.utils.Chat
+import ltd.matrixstudios.hubcore.utils.ItemBuilder
 import ltd.matrixstudios.hubcore.utils.menu.Button
 import ltd.matrixstudios.hubcore.utils.menu.pagination.PaginatedMenu
 import org.bukkit.Material
@@ -32,6 +33,14 @@ class CosmeticCategoryMenu(val player: Player, val cosmeticType: CosmeticType) :
 
     class CosmeticButton(val cosmetic: Cosmetic) : Button()
     {
+        init {
+            setItemStack(ItemBuilder.of(cosmetic.displayItem)
+                .setLore(mutableListOf())
+                .name(Chat.format(cosmetic.displayName))
+                .data(cosmetic.data)
+                .color(cosmetic.color).build())
+        }
+
         override fun getMaterial(player: Player): Material {
             return cosmetic.displayItem
         }

@@ -7,6 +7,8 @@ import org.bukkit.inventory.ItemStack
 
 abstract class Button {
 
+    var buttonItem: ItemStack? = null
+
     abstract fun getMaterial(player: Player) : Material
     abstract fun getDescription(player: Player) : MutableList<String>?
     abstract fun getDisplayName(player: Player) : String?
@@ -14,7 +16,17 @@ abstract class Button {
 
     abstract fun onClick(player: Player, slot: Int, type: ClickType)
 
+    fun setItemStack(itemStack: ItemStack)
+    {
+        this.buttonItem = itemStack
+    }
+
     fun constructItemStack(player: Player) : ItemStack {
+        if (buttonItem != null)
+        {
+            return buttonItem!!
+        }
+
         val itemStack: ItemStack = ItemStack(getMaterial(player))
 
         itemStack.durability = getData(player)

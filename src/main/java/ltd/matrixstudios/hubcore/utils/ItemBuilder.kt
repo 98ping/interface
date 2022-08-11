@@ -71,7 +71,7 @@ class ItemBuilder(private val item: ItemStack) {
     }
 
     fun color(color: Color): ItemBuilder {
-        val meta = item.itemMeta as? LeatherArmorMeta ?: throw UnsupportedOperationException("Cannot set color of a non-leather armor item.")
+        val meta = item.itemMeta as? LeatherArmorMeta ?: return this
         meta.color = color
         item.itemMeta = meta
         return this

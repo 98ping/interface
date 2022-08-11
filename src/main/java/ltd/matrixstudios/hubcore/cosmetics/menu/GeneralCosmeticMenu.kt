@@ -3,6 +3,7 @@ package ltd.matrixstudios.hubcore.cosmetics.menu
 import ltd.matrixstudios.hubcore.InterfacePlugin
 import ltd.matrixstudios.hubcore.cosmetics.CosmeticType
 import ltd.matrixstudios.hubcore.utils.Chat
+import ltd.matrixstudios.hubcore.utils.ItemBuilder
 import ltd.matrixstudios.hubcore.utils.menu.Button
 import ltd.matrixstudios.hubcore.utils.menu.Menu
 import org.bukkit.Material
@@ -67,6 +68,7 @@ class GeneralCosmeticMenu(val player: Player) : Menu(9, player)
                 return armor.toShort()
             } else return particle.toShort()
         }
+
 
         override fun onClick(player: Player, slot: Int, type: ClickType) {
             CosmeticCategoryMenu(player, category).updateMenu()

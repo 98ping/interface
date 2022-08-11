@@ -69,6 +69,9 @@ cosmeticButtons:
     item: LEATHER_CHESTPLATE
     name: "&bArmor"
     data: 0
+    r: 255
+    g: 0
+    b: 6
     lore:
       - "&7Click to view all armors!"
 
