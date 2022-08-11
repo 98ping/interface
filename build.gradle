@@ -26,6 +26,7 @@ dependencies {
 
     //development libraries
     compileOnly 'com.github.98ping:Alchemist:886ee22812'
+    compileOnly 'com.github.98ping:funnel:ccbf5b640e'
     implementation 'com.github.thatkawaiisam:assemble:0873308ada'
     implementation "co.aikar:acf-paper:0.5.1-SNAPSHOT"
     implementation 'com.github.scalagg.scala-store:shared:3af8d2d9fe'

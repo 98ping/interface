@@ -18,6 +18,8 @@ import ltd.matrixstudios.hubcore.menus.CustomMenuService
 import ltd.matrixstudios.hubcore.menus.commands.OpenMenuCommand
 import ltd.matrixstudios.hubcore.prevention.PreventionListeners
 import ltd.matrixstudios.hubcore.proxy.ProxyUtils
+import ltd.matrixstudios.hubcore.queues.QueuePlugin
+import ltd.matrixstudios.hubcore.queues.QueuePluginService
 import ltd.matrixstudios.hubcore.ranks.RankAdapterService
 import ltd.matrixstudios.hubcore.selector.SelectorItemService
 import ltd.matrixstudios.hubcore.store.DataStoreManager
@@ -66,9 +68,7 @@ class InterfacePlugin : ExtendedJavaPlugin()
 
         registerEvents()
         initDisplays()
-
         registerCommands()
-
     }
 
     fun registerCommands()
@@ -85,13 +85,13 @@ class InterfacePlugin : ExtendedJavaPlugin()
         val assemble = Assemble(this, HubcoreScoreboard())
         assemble.ticks = 10L
         assemble.assembleStyle = AssembleStyle.MODERN
-
     }
 
     fun registerAllSerivces()
     {
         SelectorItemService.initiate()
         RankAdapterService.initiate()
+        QueuePluginService.initiate()
         InventoryLoadoutService.initiate()
         CustomMenuService.initiate()
         UserService.initiate()
