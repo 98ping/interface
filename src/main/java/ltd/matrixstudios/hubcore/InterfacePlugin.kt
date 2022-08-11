@@ -8,6 +8,7 @@ import gg.scala.store.ScalaDataStoreShared
 import io.github.thatkawaiisam.assemble.Assemble
 import io.github.thatkawaiisam.assemble.AssembleStyle
 import ltd.matrixstudios.hubcore.commands.InterfaceCommands
+import ltd.matrixstudios.hubcore.cosmetics.CosmeticService
 import ltd.matrixstudios.hubcore.cosmetics.commands.CosmeticsCommand
 import ltd.matrixstudios.hubcore.displays.HubcoreScoreboard
 import ltd.matrixstudios.hubcore.inventory.InventoryLoadoutService
@@ -95,6 +96,7 @@ class InterfacePlugin : ExtendedJavaPlugin()
         CustomMenuService.initiate()
         UserService.initiate()
         SpawnLocationManager.loadSpawnLocation()
+        CosmeticService.initiate()
     }
 
     fun registerEvents()

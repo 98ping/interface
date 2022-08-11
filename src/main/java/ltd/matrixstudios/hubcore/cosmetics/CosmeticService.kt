@@ -30,7 +30,9 @@ object CosmeticService : Service
         {
             val id = item
             val displayName = config.getString("cosmetics.$item.displayName")
-            val displayColor = config.getString("cosmetics.$item.color")
+            val displayR = config.getInt("cosmetics.$item.r")
+            val displayG = config.getInt("cosmetics.$item.g")
+            val displayB = config.getInt("cosmetics.$item.b")
             val displayItem = config.getString("cosmetics.$item.item")
             val displayData = config.getInt("cosmetics.$item.data")
             val cosmeticType = config.getString("cosmetics.$item.type")
@@ -39,7 +41,7 @@ object CosmeticService : Service
             cosmetics[id] = Cosmetic(
                 id,
                 displayName,
-                Color.getColor(displayColor),
+                org.bukkit.Color.fromRGB(displayR, displayG, displayB),
                 Material.getMaterial(displayItem),
                 CosmeticType.valueOf(cosmeticType),
                 displayData.toShort(),
@@ -51,9 +53,7 @@ object CosmeticService : Service
 
     fun applyCosmetic(player: Player, cosmetic: Cosmetic)
     {
-        val colorRGB = cosmetic.color.rgb
-
-        val bukkitColor = org.bukkit.Color.fromRGB(colorRGB)
+        val bukkitColor = cosmetic.color
         val armor = arrayOf(
             ItemBuilder.of(Material.LEATHER_HELMET).color(bukkitColor).build(),
             ItemBuilder.of(Material.LEATHER_CHESTPLATE).color(bukkitColor).build(),

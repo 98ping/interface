@@ -1,7 +1,8 @@
 package ltd.matrixstudios.hubcore.cosmetics
 
+import org.bukkit.Color
 import org.bukkit.Material
-import java.awt.Color
+
 
 class Cosmetic(
     var id: String,
