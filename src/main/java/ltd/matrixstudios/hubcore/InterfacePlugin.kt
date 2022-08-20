@@ -7,6 +7,7 @@ import com.google.gson.LongSerializationPolicy
 import gg.scala.store.ScalaDataStoreShared
 import io.github.thatkawaiisam.assemble.Assemble
 import io.github.thatkawaiisam.assemble.AssembleStyle
+import ltd.matrixstudios.alchemist.service.profiles.ProfileGameService
 import ltd.matrixstudios.hubcore.commands.InterfaceCommands
 import ltd.matrixstudios.hubcore.cosmetics.CosmeticService
 import ltd.matrixstudios.hubcore.cosmetics.commands.CosmeticsCommand
@@ -30,6 +31,7 @@ import me.lucko.helper.Events
 import me.lucko.helper.plugin.ExtendedJavaPlugin
 import me.lucko.helper.plugin.ap.Plugin
 import org.bukkit.Location
+import org.bukkit.event.player.AsyncPlayerChatEvent
 import org.bukkit.event.player.PlayerJoinEvent
 
 
@@ -67,7 +69,10 @@ class InterfacePlugin : ExtendedJavaPlugin()
         registerAllSerivces()
 
         registerEvents()
-        initDisplays()
+        if (config.getBoolean("scoreboard.enabled"))
+        {
+            initDisplays()
+        }
         registerCommands()
     }
 
@@ -76,7 +81,9 @@ class InterfacePlugin : ExtendedJavaPlugin()
         val commandManager = PaperCommandManager(this).apply {
             this.registerCommand(InterfaceCommands())
             this.registerCommand(OpenMenuCommand())
-            this.registerCommand(CosmeticsCommand())
+            if (config.getBoolean("useDbs")) {
+                this.registerCommand(CosmeticsCommand())
+            }
         }
     }
 
@@ -94,9 +101,11 @@ class InterfacePlugin : ExtendedJavaPlugin()
         QueuePluginService.initiate()
         InventoryLoadoutService.initiate()
         CustomMenuService.initiate()
-        UserService.initiate()
+        if (config.getBoolean("useDbs")) {
+            UserService.initiate()
+            CosmeticService.initiate()
+        }
         SpawnLocationManager.loadSpawnLocation()
-        CosmeticService.initiate()
     }
 
     fun registerEvents()

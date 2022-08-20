@@ -5,9 +5,11 @@ joinMessages:
   - "&eDiscord: discord.gg/test"
   - "&7&m----------------------------"
 
+useDbs: false
 mongo: "mongodb://localhost:27017"
 
 scoreboard:
+  enabled: true
   title: "&9Test &7[Hub-01]"
   lines:
     - "&7&m----------------------------"
@@ -31,6 +33,7 @@ selector:
   title: "Choose a Server"
   size: 27
   invSlot: 0
+  command: "menu test"
   clickable:
     name: "&9Select a Server"
     lore:
@@ -61,6 +64,7 @@ items:
       - "openmenu LobbySelector"
 
 cosmeticButtons:
+  enabled: false
   particles:
     item: REDSTONE
     name: "&bParticles"

@@ -30,8 +30,8 @@ object InventoryLoadoutService : Service
         items[SelectorItemService.selectorItemLocation] =
             InventoryItem(
                 SelectorItemService.selectorItem,
-                false,
-                mutableListOf()
+                true,
+                mutableListOf(SelectorItemService.command)
             )
 
         val config = InterfacePlugin.instance.config

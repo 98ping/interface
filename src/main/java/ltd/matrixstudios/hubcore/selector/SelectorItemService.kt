@@ -20,6 +20,7 @@ object SelectorItemService : Service
 
     var selectorTitle: String = "Server Selector"
     var selectorSize: Int = 18
+    var command: String = ""
     lateinit var selectorItem: ItemStack
     //in the inventory
     var selectorItemLocation by Delegates.notNull<Int>()
@@ -35,6 +36,11 @@ object SelectorItemService : Service
         val selectorItemLore = config.getStringList("selector.clickable.lore")
         val selectorItemMaterial = config.getString("selector.clickable.material")
         val selectorItemData = config.getInt("selector.clickable.data")
+
+        if (config.getString("selector.command") != "")
+        {
+            command = config.getString("selector.command")
+        }
 
         selectorItemLocation = config.getInt("selector.invSlot")
 
@@ -92,7 +98,11 @@ object SelectorItemService : Service
                 it.item != null && it.item.type != Material.AIR && it.item.isSimilar(selectorItem)
             }
             .handler {
-                SelectorMenu(it.player).openMenu()
+                if (command == "") {
+                    SelectorMenu(it.player).openMenu()
+                } else {
+                    it.player.performCommand(command)
+                }
             }
     }
 
