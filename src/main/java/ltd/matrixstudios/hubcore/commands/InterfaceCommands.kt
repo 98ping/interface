@@ -30,7 +30,7 @@ class InterfaceCommands : BaseCommand() {
         {
             player.sendMessage(Chat.format("&b/interface createMenu &f<name>"))
             player.sendMessage(Chat.format("&b/interface editor"))
-            player.sendMessage(Chat.format("&b/interface setspawn"))
+            player.sendMessage(Chat.format("&b/interface set-spawn"))
         }
         player.sendMessage(Chat.format("&7&m----------------------"))
     }

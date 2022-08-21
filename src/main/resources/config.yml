@@ -5,7 +5,7 @@ joinMessages:
   - "&eDiscord: discord.gg/test"
   - "&7&m----------------------------"
 
-useDbs: false
+useDbs: true
 mongo: "mongodb://localhost:27017"
 
 scoreboard:
@@ -28,18 +28,27 @@ scoreboard:
     - "&bPosition: &f{position}/{total}"
     - "&7&m----------------------------"
 
+#for grappler
+grappler:
+  enabled: true
+  name: "&eGrappler"
+  lore:
+    - ""
+  slot: 4
+
+listeners:
+  allowDamageFromPlayer: false
+
 #for the selector menu
 selector:
   title: "Choose a Server"
   size: 27
   invSlot: 0
-  command: "menu test"
-  clickable:
-    name: "&9Select a Server"
-    lore:
-      - "&7Click to select a server!"
-    material: BOOK
-    data: 0
+  command: "" #if using a command must change. If not you will be fine
+  lore:
+    - "&7Click to select a server!"
+  material: BOOK
+  data: 0
   items:
     test:
       slot: 0

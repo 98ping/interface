@@ -12,6 +12,7 @@ import ltd.matrixstudios.hubcore.commands.InterfaceCommands
 import ltd.matrixstudios.hubcore.cosmetics.CosmeticService
 import ltd.matrixstudios.hubcore.cosmetics.commands.CosmeticsCommand
 import ltd.matrixstudios.hubcore.displays.HubcoreScoreboard
+import ltd.matrixstudios.hubcore.grappler.GrapplerHandler
 import ltd.matrixstudios.hubcore.inventory.InventoryLoadoutService
 import ltd.matrixstudios.hubcore.location.SpawnLocationManager
 import ltd.matrixstudios.hubcore.location.serialize.LocationSerializer
@@ -74,6 +75,8 @@ class InterfacePlugin : ExtendedJavaPlugin()
             initDisplays()
         }
         registerCommands()
+
+        GrapplerHandler.registerEvents()
     }
 
     fun registerCommands()
