@@ -13,20 +13,8 @@ class MainEditorMenu(val player: Player) : Menu(27, player)
 {
     override fun getButtons(player: Player): MutableMap<Int, Button> {
         val buttons = mutableMapOf<Int, Button>()
-        for (int in 0 until 9)
-        {
-            buttons[int] = PlaceholderButton(Material.STAINED_GLASS_PANE, mutableListOf(), "", 7)
-        }
 
-        buttons[9] = PlaceholderButton(Material.STAINED_GLASS_PANE, mutableListOf(), "", 7)
-        buttons[17] = PlaceholderButton(Material.STAINED_GLASS_PANE, mutableListOf(), "", 7)
-
-        for (int in 18 until 27)
-        {
-            buttons[int] = PlaceholderButton(Material.STAINED_GLASS_PANE, mutableListOf(), "", 7)
-        }
-
-        buttons[10] = SimpleActionButton(
+        buttons[0] = SimpleActionButton(
             Material.POWERED_RAIL,
             mutableListOf(),
             Chat.format("&bMenu Editor"),

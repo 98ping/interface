@@ -33,7 +33,7 @@ abstract class Button {
 
         val itemMeta = itemStack.itemMeta
 
-        itemMeta.displayName = getDisplayName(player)
+        itemMeta!!.setDisplayName(getDisplayName(player))
         itemMeta.lore = getDescription(player)
 
 

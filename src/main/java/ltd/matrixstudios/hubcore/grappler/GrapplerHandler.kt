@@ -12,7 +12,7 @@ import java.util.*
 
 object GrapplerHandler {
     val item = ItemBuilder.of(Material.FISHING_ROD)
-        .name(Chat.format(InterfacePlugin.instance.config.getString("grappler.name")))
+        .name(Chat.format(InterfacePlugin.instance.config.getString("grappler.name")!!))
         .setLore(InterfacePlugin.instance.config.getStringList("grappler.lore").map { Chat.format(it) })
         .build()
 

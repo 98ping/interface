@@ -33,6 +33,18 @@ object CustomMenuService : Service
         } else
         {
             file.createNewFile()
+
+            if (file.exists())
+            {
+                Files.write(
+                    InterfacePlugin.instance.GSON.toJson
+                        (menus.values,
+                        CONFIG_TYPE
+                    ), file,
+                    Charsets.UTF_8
+                )
+
+            }
         }
     }
 

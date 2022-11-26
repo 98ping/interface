@@ -27,7 +27,7 @@ class PageNavigationMenu(val player: Player, val maxPages: Int, val menu: Pagina
 
     class PageNavigationButton(val page: Int, val menu: PaginatedMenu) : Button() {
         override fun getMaterial(player: Player): Material {
-            return Material.BOOK_AND_QUILL
+            return Material.BOOK
         }
 
         override fun getDescription(player: Player): MutableList<String>? {

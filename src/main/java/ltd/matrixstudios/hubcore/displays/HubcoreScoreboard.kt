@@ -11,7 +11,7 @@ import org.bukkit.entity.Player
 
 class HubcoreScoreboard : AssembleAdapter {
     override fun getTitle(player: Player?): String {
-        return Chat.format(InterfacePlugin.instance.config.getString("scoreboard.title"))
+        return Chat.format(InterfacePlugin.instance.config.getString("scoreboard.title")!!)
     }
 
     override fun getLines(player: Player): MutableList<String> {

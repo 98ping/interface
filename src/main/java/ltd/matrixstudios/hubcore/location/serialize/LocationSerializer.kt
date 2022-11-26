@@ -22,7 +22,7 @@ class LocationSerializer : JsonDeserializer<Location>, JsonSerializer<Location> 
             }
 
             val jsonObject = JsonObject()
-            jsonObject.addProperty("world", location.world.name)
+            jsonObject.addProperty("world", location.world!!.name)
             jsonObject.addProperty("x", location.x as Number)
             jsonObject.addProperty("y", location.y as Number)
             jsonObject.addProperty("z", location.z as Number)

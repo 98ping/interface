@@ -17,7 +17,7 @@ class EditMenuMenu(val player: Player, val menu: CustomMenu) : PaginatedMenu(18,
        val buttons = hashMapOf<Int, Button>()
 
         buttons[0] = SimpleActionButton(
-            Material.BOOK_AND_QUILL,
+            Material.BOOK,
             mutableListOf(),
             Chat.format("&bEdit Menu Title"),
             0
@@ -35,7 +35,7 @@ class EditMenuMenu(val player: Player, val menu: CustomMenu) : PaginatedMenu(18,
         }
 
         buttons[1] = SimpleActionButton(
-            Material.IRON_FENCE,
+            Material.CHEST,
             mutableListOf(),
             Chat.format("&bEdit Menu Size"),
             0

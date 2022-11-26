@@ -37,7 +37,7 @@ object InventoryLoadoutService : Service
         val config = InterfacePlugin.instance.config
 
         for (item in
-            config.getConfigurationSection("items").getKeys(false)
+            config.getConfigurationSection("items")!!.getKeys(false)
         )
         {
             val name = config.getString("items.$item.name")
@@ -49,8 +49,8 @@ object InventoryLoadoutService : Service
             val commands = config.getStringList("items.$item.command")
 
             items[slot] = InventoryItem(
-                ItemBuilder.of(Material.getMaterial(material))
-                    .name(Chat.format(name))
+                ItemBuilder.of(Material.getMaterial(material!!)!!)
+                    .name(Chat.format(name!!))
                     .setLore(lore)
                     .data(data)
                     .build(),
@@ -87,7 +87,7 @@ object InventoryLoadoutService : Service
                 it.action == Action.RIGHT_CLICK_AIR || it.action == Action.RIGHT_CLICK_BLOCK
             }
             .filter { playerInteractEvent ->
-                playerInteractEvent.item != null && playerInteractEvent.item.type != Material.AIR && items.values.firstOrNull {
+                playerInteractEvent.item != null && playerInteractEvent.item!!.type != Material.AIR && items.values.firstOrNull {
                     it.itemStack.isSimilar(
                         playerInteractEvent.item
                     )
@@ -102,7 +102,10 @@ object InventoryLoadoutService : Service
                     if (item.usesAction)
                     {
                         item.commands.forEach {
-                            event.player.performCommand(it)
+                            if (it != "")
+                            {
+                                event.player.performCommand(it)
+                            }
                         }
                     }
                 }

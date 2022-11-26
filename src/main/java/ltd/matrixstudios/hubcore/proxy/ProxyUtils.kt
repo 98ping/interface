@@ -6,6 +6,7 @@ import ltd.matrixstudios.hubcore.InterfacePlugin
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.bukkit.plugin.messaging.PluginMessageListener
+import org.bukkit.scheduler.BukkitRunnable
 import java.io.ByteArrayOutputStream
 import java.io.DataOutputStream
 import java.io.IOException
@@ -26,16 +27,16 @@ object ProxyUtils : PluginMessageListener {
         Bukkit.getServer().messenger.registerOutgoingPluginChannel(InterfacePlugin.instance, "BungeeCord")
         Bukkit.getServer().messenger.registerIncomingPluginChannel(InterfacePlugin.instance, "BungeeCord", this)
 
-        Bukkit.getScheduler()
-            .runTaskTimerAsynchronously(InterfacePlugin.instance,
-            {
+        object : BukkitRunnable()
+        {
+            override fun run() {
                 servers.forEach(Consumer { server: String ->
                     getPlayerCount(
                         server
                     )
                 })
-            }, 20L, 20L
-        )
+            }
+        }.runTaskTimerAsynchronously(InterfacePlugin.instance, 20L, 20L)
     }
 
     override fun onPluginMessageReceived(channel: String, player: Player, message: ByteArray) {

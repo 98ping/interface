@@ -30,11 +30,11 @@ object PreventionListeners
         }
 
         Events.subscribe(PlayerMoveEvent::class.java)
-            .filter { it.to.y == 0.0 }
+            .filter { it.to!!.y == 0.0 }
             .handler {
                 if (SpawnLocationManager.spawnLocation != null)
                 {
-                    it.player.teleport(SpawnLocationManager.spawnLocation)
+                    it.player.teleport(SpawnLocationManager.spawnLocation!!)
                 }
             }
 
@@ -47,10 +47,7 @@ object PreventionListeners
             }
 
         Events.subscribe(BlockBreakEvent::class.java).handler {
-            if (it.player.gameMode != GameMode.CREATIVE)
-            {
-                it.isCancelled = true
-            }
+            it.isCancelled = true
         }
 
         Events.subscribe(EntitySpawnEvent::class.java)
@@ -70,15 +67,12 @@ object PreventionListeners
             .handler {
                 if (SpawnLocationManager.spawnLocation != null)
                 {
-                    it.entity.teleport(SpawnLocationManager.spawnLocation)
+                    it.entity.teleport(SpawnLocationManager.spawnLocation!!)
                 }
             }
 
         Events.subscribe(BlockPlaceEvent::class.java).handler {
-            if (it.player.gameMode != GameMode.CREATIVE)
-            {
-                it.isCancelled = true
-            }
+            it.isCancelled = true
         }
 
         Events.subscribe(EntityDamageByEntityEvent::class.java).handler {

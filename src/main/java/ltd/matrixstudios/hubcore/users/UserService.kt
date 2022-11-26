@@ -1,10 +1,14 @@
 package ltd.matrixstudios.hubcore.users
 
-import gg.scala.store.controller.DataStoreObjectController
-import gg.scala.store.controller.DataStoreObjectControllerCache
-import gg.scala.store.storage.type.DataStoreStorageType
 import ltd.matrixstudios.hubcore.InterfacePlugin
 import ltd.matrixstudios.hubcore.services.Service
+import ltd.matrixstudios.syndicate.Syndicate
+import ltd.matrixstudios.syndicate.orchestrators.async.AsyncRepositoryOrchestrator
+import ltd.matrixstudios.syndicate.orchestrators.sync.SyncRepositoryOrchestrator
+import ltd.matrixstudios.syndicate.storage.mongo.async.AsyncMongoService
+import ltd.matrixstudios.syndicate.storage.mongo.sync.MongoService
+import ltd.matrixstudios.syndicate.types.async.AsyncStoreType
+import ltd.matrixstudios.syndicate.types.sync.SyncStoreType
 import me.lucko.helper.Events
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent
 import java.util.UUID
@@ -12,12 +16,12 @@ import java.util.logging.Level
 
 object UserService : Service
 {
-    lateinit var controller: DataStoreObjectController<User>
+    lateinit var controller: MongoService<User>
+
+    var cache = mutableMapOf<UUID, User>()
 
     override fun initiate() {
-        controller =  DataStoreObjectControllerCache.create()
-
-        controller.preLoadResources()
+        controller = SyncRepositoryOrchestrator.createSyncRepository(User::class.java, SyncStoreType.MONGO_SYNC) as MongoService<User>
 
         loadListeners()
     }
@@ -43,19 +47,21 @@ object UserService : Service
 
     fun loadUser(uuid: UUID, username: String) : User
     {
-        val cache = retrieveAllCached()
-
-        return if (cache.containsKey(uuid)) {
-            cache[uuid]!!
-        } else {
-            val generatingProfile = User(uuid, username, null, null, System.currentTimeMillis())
-
-            controller.save(generatingProfile, DataStoreStorageType.MONGO)
-
-            controller.localCache[uuid] = generatingProfile
-
-            generatingProfile
+        if (cache.containsKey(uuid))
+        {
+            return cache[uuid]!!
         }
+
+       val there = controller.findById(uuid)
+
+        if (there != null)
+        {
+            cache[there.id] = there
+
+            return there
+        }
+
+        return User(username, null, null, System.currentTimeMillis(), uuid).also { cache[it.id] = it }
     }
 
 

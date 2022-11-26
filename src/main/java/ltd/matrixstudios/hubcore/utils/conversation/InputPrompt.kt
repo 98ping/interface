@@ -45,7 +45,8 @@ open class InputPrompt : StringPrompt() {
         return promptText
     }
 
-    override fun acceptInput(context: ConversationContext, input: String): Prompt? {
+    override fun acceptInput(context: ConversationContext, input: String?): Prompt? {
+        val input = input!!
         if (charLimit != -1) {
             if (input.length > charLimit) {
                 context.forWhom.sendRawMessage("${ChatColor.RED}Input text is too long! (${input.length} > ${charLimit})")

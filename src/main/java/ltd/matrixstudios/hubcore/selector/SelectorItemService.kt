@@ -29,7 +29,7 @@ object SelectorItemService : Service
     {
         val config = InterfacePlugin.instance.config
 
-        selectorTitle = config.getString("selector.title")
+        selectorTitle = config.getString("selector.title")!!
         selectorSize = config.getInt("selector.size")
 
         val selectorItemName = config.getString("selector.clickable.name")
@@ -39,15 +39,15 @@ object SelectorItemService : Service
 
         if (config.getString("selector.command") != "")
         {
-            command = config.getString("selector.command")
+            command = config.getString("selector.command")!!
         }
 
         selectorItemLocation = config.getInt("selector.invSlot")
 
         selectorItem = ItemBuilder.of(
-            Material.getMaterial(selectorItemMaterial.uppercase())
+            Material.getMaterial(selectorItemMaterial!!.toUpperCase())!!
         ).data(selectorItemData.toShort())
-            .name(Chat.format(selectorItemName))
+            .name(Chat.format(selectorItemName!!))
             .setLore(selectorItemLore)
             .build()
 
@@ -59,7 +59,7 @@ object SelectorItemService : Service
         val config = InterfacePlugin.instance.config
         for (key in config.getConfigurationSection(
             "selector.items"
-        ).getKeys(
+        )!!.getKeys(
             false
         ))
         {
@@ -76,12 +76,12 @@ object SelectorItemService : Service
             val command = config.getString("selector.items.$key.command")
 
             items[slot] = SelectorItem(
-                displayName,
+                displayName!!,
                 lore,
-                Material.getMaterial(material.toUpperCase()),
+                Material.getMaterial(material!!.toUpperCase())!!,
                 data.toShort(),
                 slot,
-                command
+                command!!
             )
 
         }
@@ -95,7 +95,7 @@ object SelectorItemService : Service
                 it.action == Action.RIGHT_CLICK_AIR || it.action == Action.RIGHT_CLICK_BLOCK
             }
             .filter {
-                it.item != null && it.item.type != Material.AIR && it.item.isSimilar(selectorItem)
+                it.item != null && it.item!!.type != Material.AIR && it.item!!.isSimilar(selectorItem)
             }
             .handler {
                 if (command == "") {
