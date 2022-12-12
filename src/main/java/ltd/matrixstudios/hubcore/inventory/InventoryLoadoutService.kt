@@ -10,6 +10,7 @@ import ltd.matrixstudios.hubcore.utils.ItemBuilder
 import me.lucko.helper.Events
 import org.bukkit.Material
 import org.bukkit.event.block.Action
+import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.event.player.PlayerQuitEvent
@@ -109,6 +110,18 @@ object InventoryLoadoutService : Service
                         }
                     }
                 }
+            }
+
+        Events.subscribe(InventoryClickEvent::class.java)
+            .filter { playerInteractEvent ->
+                playerInteractEvent.currentItem != null && playerInteractEvent.currentItem!!.type != Material.AIR && items.values.firstOrNull {
+                    it.itemStack.isSimilar(
+                        playerInteractEvent.currentItem
+                    )
+                } != null
+            }
+            .handler { event ->
+                event.isCancelled = true
             }
     }
 }
